@@ -1,0 +1,1 @@
+The desktop version of image-compressor with a simple ui
