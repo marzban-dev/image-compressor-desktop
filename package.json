@@ -1,0 +1,48 @@
+{
+  "name": "scratchpad",
+  "productName": "scratchpad",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "watch:css": "tailwindcss -i src/assets/css/tailwind.css -o src/assets/css/main.css --watch"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Mansour",
+    "email": "84951627+marzban-dev@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.3",
+    "@electron-forge/maker-deb": "^6.0.3",
+    "@electron-forge/maker-rpm": "^6.0.3",
+    "@electron-forge/maker-squirrel": "^6.0.3",
+    "@electron-forge/maker-zip": "^6.0.3",
+    "@electron-forge/plugin-webpack": "^6.0.3",
+    "@vercel/webpack-asset-relocator-loader": "^1.7.3",
+    "autoprefixer": "^10.4.13",
+    "css-loader": "^6.7.2",
+    "electron": "21.2.3",
+    "node-loader": "^2.0.0",
+    "postcss": "^8.4.19",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "electron-squirrel-startup": "^1.0.0",
+    "framer-motion": "^7.6.7",
+    "granim": "^2.0.0",
+    "react": "^18.2.0",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "sharp": "^0.31.2"
+  }
+}
