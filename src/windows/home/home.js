@@ -14,6 +14,8 @@ const createHomeWindow = () => {
         },
     });
 
+    mainWindow.webContents.openDevTools();
+
     mainWindow.removeMenu();
 
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
