@@ -1,11 +1,12 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import AppContext from "../context/app.context";
-import {sleep} from "../utils";
+import { sleep } from "../utils";
 
-const StartButton = ({...rest}) => {
-    const {inputDirectory, outputDirectory, setCompressionResult, setRunState} = useContext(AppContext);
-    const disabled = !inputDirectory || !outputDirectory;
+const StartButton = ({ ...rest }) => {
+    const { inputDirectory, outputDirectory, setCompressionResult, setRunState } =
+        useContext(AppContext);
+    const disabled = !inputDirectory;
 
     const onClick = async () => {
         setRunState("running");
@@ -13,15 +14,15 @@ const StartButton = ({...rest}) => {
         setTimeout(async () => {
             const compressionResult = await window.electronAPI.startProgress(
                 inputDirectory.path,
-                outputDirectory.path
+                outputDirectory ? outputDirectory.path : null
             );
 
             await sleep(500);
 
             setRunState("finish");
             setCompressionResult(compressionResult);
-        }, 500)
-    }
+        }, 500);
+    };
 
     const classes = classNames({
         "w-full py-4 text-primary-bright rounded-xl shadow-md transition-all": 1,
@@ -30,14 +31,10 @@ const StartButton = ({...rest}) => {
     });
 
     return (
-        <button
-            className={classes}
-            onClick={!disabled ? onClick : undefined}
-            {...rest}
-        >
+        <button className={classes} onClick={!disabled ? onClick : undefined} {...rest}>
             Compress
         </button>
-    )
-}
+    );
+};
 
 export default StartButton;
