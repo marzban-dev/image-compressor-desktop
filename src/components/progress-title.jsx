@@ -1,15 +1,14 @@
-import React, {useContext} from "react";
-import {AnimatePresence, motion} from "framer-motion";
+import React, { useContext } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import AppContext from "../context/app.context";
 
-const ProgressTitle = ({title}) => {
-    const {compressionResult} = useContext(AppContext)
-    console.log(compressionResult);
+const ProgressTitle = ({ title }) => {
+    const { compressionResult } = useContext(AppContext);
 
     const titleVariants = {
         init: {
             y: 10,
-            opacity: 0
+            opacity: 0,
         },
         exit: {
             y: -10,
@@ -19,9 +18,9 @@ const ProgressTitle = ({title}) => {
                     duration: 0.1,
                 },
                 opacity: {
-                    duration: 0.05
-                }
-            }
+                    duration: 0.05,
+                },
+            },
         },
         enter: {
             y: 0,
@@ -31,10 +30,10 @@ const ProgressTitle = ({title}) => {
                     duration: 0.05,
                 },
                 opacity: {
-                    duration: 0.1
-                }
-            }
-        }
+                    duration: 0.1,
+                },
+            },
+        },
     };
 
     return (
@@ -47,20 +46,24 @@ const ProgressTitle = ({title}) => {
                 exit="exit"
                 className="text-white-20 text-[16px] whitespace-nowrap overflow-hidden overflow-ellipsis w-[300px] text-center"
             >
-                {!compressionResult ? (title ? title : "------") : (
+                {!compressionResult ? (
+                    title ? (
+                        title
+                    ) : (
+                        "------"
+                    )
+                ) : (
                     <span>
                         <span className="text-[rgb(243,110,110)] pr-1">
                             {compressionResult.inputSize}
                         </span>
                         👉
-                        <span className="text-primary pl-1">
-                            {compressionResult.outputSize}
-                        </span>
+                        <span className="text-primary pl-1">{compressionResult.outputSize}</span>
                     </span>
                 )}
             </motion.div>
         </AnimatePresence>
     );
-}
+};
 
 export default ProgressTitle;
