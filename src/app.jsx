@@ -1,10 +1,10 @@
-import React, {useContext, useRef, useState} from "react";
 import classNames from "classnames";
-import toast, {Toaster} from "react-hot-toast";
-import AppContext from "./context/app.context";
+import React, { useContext, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import Progress from "./components/progress.jsx";
 import ShowFolderDetails from "./components/show-folder-details.jsx";
 import StartButton from "./components/start-button.jsx";
-import Progress from "./components/progress.jsx";
+import AppContext from "./context/app.context";
 
 const App = () => {
     const {
@@ -13,7 +13,7 @@ const App = () => {
         runState,
         setRunState,
         setInputDirectory,
-        setOutputDirectory
+        setOutputDirectory,
     } = useContext(AppContext);
 
     const [isInputAreaActive, setIsInputAreaActive] = useState(false);
@@ -23,13 +23,13 @@ const App = () => {
     const outputDropArea = useRef(null);
 
     const preventDefaults = (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-    }
+        e.preventDefault();
+        e.stopPropagation();
+    };
 
     const checkAndSetupDraggedDirectory = async (e, type) => {
-        const dt = e.dataTransfer
-        const files = dt.files
+        const dt = e.dataTransfer;
+        const files = dt.files;
 
         if (files.length > 1) {
             toast("Drag just one file", {
@@ -44,22 +44,22 @@ const App = () => {
                     if (count !== 0) {
                         setInputDirectory({
                             name: uploadedFolder.name,
-                            path: uploadedFolder.path
+                            path: uploadedFolder.path,
                         });
                     } else {
                         toast("This folder is empty", {
-                            icon: "ℹ️"
+                            icon: "ℹ️",
                         });
                     }
                 } else {
                     if (count === 0) {
                         setOutputDirectory({
                             name: uploadedFolder.name,
-                            path: uploadedFolder.path
+                            path: uploadedFolder.path,
                         });
                     } else {
                         toast("Please upload an empty folder", {
-                            icon: "ℹ️"
+                            icon: "ℹ️",
                         });
                     }
                 }
@@ -69,57 +69,57 @@ const App = () => {
                 });
             }
         }
-    }
+    };
 
     // Input area events
     const onInputAreaDragOver = (e) => {
         preventDefaults(e);
         setIsInputAreaActive(true);
-    }
+    };
 
     const onInputAreaDragEnter = (e) => {
         preventDefaults(e);
         setIsInputAreaActive(true);
-    }
+    };
 
     const onInputAreaDragLeave = (e) => {
         preventDefaults(e);
         setIsInputAreaActive(false);
-    }
+    };
 
     const onInputAreaDrop = (e) => {
         preventDefaults(e);
         setIsInputAreaActive(false);
         checkAndSetupDraggedDirectory(e, "input");
-    }
+    };
 
     // Output area events
     const onOutputAreaDragOver = (e) => {
         preventDefaults(e);
         setIsOutputAreaActive(true);
-    }
+    };
 
     const onOutputAreaDragEnter = (e) => {
         preventDefaults(e);
         setIsOutputAreaActive(true);
-    }
+    };
 
     const onOutputAreaDragLeave = (e) => {
         preventDefaults(e);
         setIsOutputAreaActive(false);
-    }
+    };
 
     const onOutputAreaDrop = async (e) => {
         preventDefaults(e);
         setIsOutputAreaActive(false);
         checkAndSetupDraggedDirectory(e, "output");
-    }
+    };
 
     const classes = {
         base: "border-2 border-dashed flex justify-center items-center w-full h-full rounded-lg transition-colors",
         active: "bg-primary-transparent border-primary text-primary",
-        idle: "bg-transparent border-white-20 text-white-20"
-    }
+        idle: "bg-transparent border-white-20 text-white-20",
+    };
 
     const inputAreaClasses = classNames({
         [classes.base]: 1,
@@ -163,7 +163,14 @@ const App = () => {
                     className={outputAreaClasses}
                     ref={outputDropArea}
                 >
-                    {!outputDirectory && <span>Drop Output</span>}
+                    {!outputDirectory && (
+                        <div className="relative flex justify-center items-center flex-col">
+                            <span>Drop Output</span>
+                            <div className="top-[30px] absolute whitespace-nowrap text-[14px] text-[rgb(126,126,126)]">
+                                default : /output
+                            </div>
+                        </div>
+                    )}
                     {outputDirectory && (
                         <ShowFolderDetails
                             icon="📤"
@@ -182,14 +189,14 @@ const App = () => {
                 reverseOrder={false}
                 toastOptions={{
                     style: {
-                        background: 'rgb(15,19,17)',
-                        color: 'rgb(183,185,183)',
-                    }
+                        background: "rgb(15,19,17)",
+                        color: "rgb(183,185,183)",
+                    },
                 }}
             />
             <Progress />
         </div>
-    )
-}
+    );
+};
 
 export default App;
