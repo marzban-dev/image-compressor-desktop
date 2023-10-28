@@ -1,48 +1,50 @@
 const fs = require("fs-extra");
-const path = require('path');
-const {spawn} = require('child_process');
+const path = require("path");
+const { spawn } = require("child_process");
 
 module.exports = {
-    packagerConfig: {},
+    packagerConfig: {
+        icon: "./src/assets/img/logo",
+    },
     rebuildConfig: {},
     makers: [
         {
-            name: '@electron-forge/maker-squirrel',
+            name: "@electron-forge/maker-squirrel",
             config: {},
         },
         {
-            name: '@electron-forge/maker-zip',
-            platforms: ['darwin'],
+            name: "@electron-forge/maker-zip",
+            platforms: ["darwin"],
         },
         {
-            name: '@electron-forge/maker-deb',
+            name: "@electron-forge/maker-deb",
             config: {},
         },
         {
-            name: '@electron-forge/maker-rpm',
+            name: "@electron-forge/maker-rpm",
             config: {},
         },
     ],
     plugins: [
         {
-            name: '@electron-forge/plugin-webpack',
+            name: "@electron-forge/plugin-webpack",
             config: {
-                mainConfig: './webpack.main.config.js',
+                mainConfig: "./webpack.main.config.js",
                 renderer: {
-                    config: './webpack.renderer.config.js',
+                    config: "./webpack.renderer.config.js",
                     entryPoints: [
                         {
-                            html: './src/windows/home/index.html',
-                            js: './src/windows/home/renderer.js',
-                            name: 'main_window',
+                            html: "./src/windows/home/index.html",
+                            js: "./src/windows/home/renderer.js",
+                            name: "main_window",
                             preload: {
-                                js: './src/windows/home/preload.js',
+                                js: "./src/windows/home/preload.js",
                             },
                         },
                         {
-                            html: './src/windows/splash/index.html',
-                            js: './src/windows/splash/renderer.js',
-                            name: 'splash_window',
+                            html: "./src/windows/splash/index.html",
+                            js: "./src/windows/splash/renderer.js",
+                            name: "splash_window",
                         },
                     ],
                 },
@@ -54,9 +56,11 @@ module.exports = {
         readPackageJson: async (forgeConfig, packageJson) => {
             // only copy deps if there isn't any
             if (Object.keys(packageJson.dependencies).length === 0) {
-                const originalPackageJson = await fs.readJson(path.resolve(__dirname, 'package.json'));
-                const webpackConfigJs = require('./webpack.renderer.config.js');
-                Object.keys(webpackConfigJs.externals).forEach(package => {
+                const originalPackageJson = await fs.readJson(
+                    path.resolve(__dirname, "package.json")
+                );
+                const webpackConfigJs = require("./webpack.renderer.config.js");
+                Object.keys(webpackConfigJs.externals).forEach((package) => {
                     packageJson.dependencies[package] = originalPackageJson.dependencies[package];
                 });
             }
@@ -65,24 +69,24 @@ module.exports = {
         packageAfterPrune: async (forgeConfig, buildPath) => {
             console.log(buildPath);
             return new Promise((resolve, reject) => {
-                const npmInstall = spawn('npm', ['install'], {
+                const npmInstall = spawn("npm", ["install"], {
                     cwd: buildPath,
-                    stdio: 'inherit',
-                    shell: true
+                    stdio: "inherit",
+                    shell: true,
                 });
 
-                npmInstall.on('close', (code) => {
+                npmInstall.on("close", (code) => {
                     if (code === 0) {
                         resolve();
                     } else {
-                        reject(new Error('process finished with error code ' + code));
+                        reject(new Error("process finished with error code " + code));
                     }
                 });
 
-                npmInstall.on('error', (error) => {
+                npmInstall.on("error", (error) => {
                     reject(error);
                 });
             });
-        }
-    }
+        },
+    },
 };

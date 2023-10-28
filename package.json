@@ -1,6 +1,6 @@
 {
-    "name": "scratchpad",
-    "productName": "scratchpad",
+    "name": "Image Compressor",
+    "productName": "Image Compressor",
     "version": "1.0.0",
     "description": "An application for compress images in simple way",
     "main": ".webpack/main",

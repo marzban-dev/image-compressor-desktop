@@ -14,7 +14,7 @@ const createHomeWindow = () => {
         },
     });
 
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     mainWindow.removeMenu();
 
