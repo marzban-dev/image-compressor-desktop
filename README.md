@@ -11,7 +11,11 @@ Electron is a powerful framework for building desktop applications using JavaScr
 
 And besides, [React.js](https://react.dev/) library and several other tools have been used
 
+React is a JavaScript library designed for creating user interfaces (UIs) in web applications. Developed by Facebook in 2011, React allows developers to build dynamic, high-performing UIs using a component-based architecture.
+
 [Tailwind](https://tailwindcss.com) is used in the project for styling, which is a modern tool for using CSS, and [Framer Motion](https://framer.com) is also used, and the animations in the project are written with this library.
+
+Tailwind CSS is an open-source CSS framework that takes a unique approach to styling web applications. Unlike traditional frameworks like Bootstrap, which provide predefined classes for specific elements (such as buttons or tables), Tailwind CSS focuses on utility classes. These utility classes are like building blocks that you can mix and match to style your components.
 
 Finally, the [Sharp](https://sharp.pixelplumbing.com/) library has been used in the project to reduce the size of the photos
 
