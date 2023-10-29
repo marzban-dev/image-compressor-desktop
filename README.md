@@ -7,9 +7,15 @@ In the easiest possible way, you just need to give the program a folder containi
 ### 🔵 Technologies
 This program uses [Electron.js](https://www.electronjs.org/) technology, which is a JavaScript framework for creating desktop programs. 💻
 
+Electron is a powerful framework for building desktop applications using JavaScript, HTML, and CSS. By embedding Chromium and Node.js into its binary, Electron enables web developers to create cross-platform apps that work seamlessly on Windows, macOS, and Linux, without requiring native development experience.
+
 And besides, [React.js](https://react.dev/) library and several other tools have been used
 
+[Tailwind](https://tailwindcss.com) is used in the project for styling, which is a modern tool for using CSS, and [Framer Motion](https://framer.com) is also used, and the animations in the project are written with this library.
+
 Finally, the [Sharp](https://sharp.pixelplumbing.com/) library has been used in the project to reduce the size of the photos
+
+Sharp is a high-performance image processing module for Node.js. It’s designed to handle common image formats and provides lightning-fast operations like resizing, rotation, extraction, compositing, and gamma correction.
 
 ### 🔵 How to use
 
