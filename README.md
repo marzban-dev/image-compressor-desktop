@@ -5,7 +5,7 @@
 In the easiest possible way, you just need to give the program a folder containing your photos, and by pressing a button, all the steps will be done automatically, and at the end, you will receive an output containing reduced size images.
 
 ### 🔵 Technologies
-This program uses [Electron.js](https://www.electronjs.org/] technology), which is a JavaScript framework for creating desktop programs. 💻
+This program uses [Electron.js](https://www.electronjs.org/) technology, which is a JavaScript framework for creating desktop programs. 💻
 
 And besides, [React.js](https://react.dev/) library and several other tools have been used
 
@@ -27,7 +27,18 @@ image-compressor-desktop\out\Image Compressor.exe
 ```
 it is an compiled version of Image Compressor app
 
+---
+
+⚠️ if you do not have [node.js](https://nodejs.org) installed on your system, please be sure to download and install it from this [link](https://nodejs.org).
+
+---
+
 if you want to edit the project source code and run it in development mode, you need to use the npm script named `start`, which is located in the `package.json` file.
+
+but before that, you should install the dependencies by running this command :
+```
+npm install
+```
 
 So, to run in development mode, enter this command in CMD :
 ```
